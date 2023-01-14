@@ -1,0 +1,30 @@
+version: '3'
+services:
+  ros:
+    build:
+      context: ./ros-env/image
+      dockerfile: ./Dockerfile
+      args:
+        - _UID=${_UID}
+        - _GID=${_GID}
+        - USER_NAME=${USER_NAME}
+        - GROUP_NAME=${GROUP_NAME}
+    working_dir: /home/${USER_NAME}/catkin_ws
+    command: /bin/bash
+    entrypoint: /tmp/init.sh
+    container_name: ros
+    tty: true
+    ports:
+      - 9090:9090
+    environment:
+      - UID=${_UID}
+      - GID=${_GID}
+      - USER_NAME=${USER_NAME}
+      - GROUP_NAME=${GROUP_NAME}
+      - PASSWORD=${PASSWORD}
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /home/inoue/.ssh:/home/${USER_NAME}/.ssh
+      - ./ros-env/ws_moveit:/home/${USER_NAME}/catkin_ws
+      - ./ros-env/ros:/home/${USER_NAME}/.ros

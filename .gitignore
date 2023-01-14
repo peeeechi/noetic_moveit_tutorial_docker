@@ -1,0 +1,4 @@
+/ros-env/ros/**/*
+!/ros-env/ros/.gitkeep
+/ros-env/catkin_ws/**/*
+!/ros-env/catkin_ws/.gitkeep
