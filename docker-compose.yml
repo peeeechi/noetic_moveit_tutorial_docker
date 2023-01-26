@@ -24,7 +24,9 @@ services:
       - PASSWORD=${PASSWORD}
       - DISPLAY=${DISPLAY}
     volumes:
+      - /dev/input/js0:/dev/input/js0
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /home/inoue/.ssh:/home/${USER_NAME}/.ssh
-      - ./ros-env/ws_moveit:/home/${USER_NAME}/catkin_ws
+      - ./ros-env/external:/home/${USER_NAME}/external
       - ./ros-env/ros:/home/${USER_NAME}/.ros
+      - ${SRC_DIR}:/home/${USER_NAME}/catkin_ws

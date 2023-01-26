@@ -25,11 +25,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     apt-transport-https \
     vim \
+    neovim \
     git \
     curl \
     && rm -rf /var/lib/apt/lists/*
+    
+RUN curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+  --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# 日本語設定
     # language-pack-ja-base：日本語の翻訳パック
     # language-pack-ja：日本語の翻訳パック（更新版）
     # fonts-ipafont-gothic: IPA ゴシック フォント
@@ -71,6 +74,8 @@ RUN apt-get update \
     && apt-get -y install \
     ros-${ROS_DISTRO}-gazebo-ros-control \
     ros-${ROS_DISTRO}-moveit \
+    ros-${ROS_DISTRO}-rviz-visual-tools \
+    ros-${ROS_DISTRO}-moveit-visual-tools \
     ros-${ROS_DISTRO}-ros-control \
     ros-${ROS_DISTRO}-ros-controllers \
     ros-${ROS_DISTRO}-rosbridge-suite \
@@ -100,24 +105,23 @@ RUN apt-get update \
 # 関連ツールのインストール
 # ccache: C,C++のビルド結果のキャッシュ
 # xvfb: Xvfb (X virtual framebuffer) は X Window System の仮想ディスプレイを作ることのできるソフトウェア
-# RUN apt-get update && apt install -y --no-install-recommends \
-#         xvfb \
-#         ccache \
-#         policykit-1 \
-#         rsync \
-#         sshpass \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt install -y --no-install-recommends \
+        xvfb \
+        ccache \
+        policykit-1 \
+        rsync \
+        sshpass \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PATH /usr/lib/ccache:${PATH}
 
 
 # 日本語入力モジュールのインストール
 # 参考: https://zenn.dev/ysuito/articles/c196ae84c95e31
-# RUN apt update && apt install -y --no-install-recommends \
-#         dbus-x11 \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y --no-install-recommends \
+        dbus-x11 \
+    && rm -rf /var/lib/apt/lists/*
 
-# RUN apt update && apt install -y --no-install-recommends \
-#         python3-venv \
-#     && rm -rf /var/lib/apt/lists/*
 
 ARG ROOT_WS=/root/catkin_ws
 
@@ -126,24 +130,17 @@ RUN rosdep update \
   && apt-get dist-upgrade -y \
   && mkdir -p ${ROOT_WS}/src
 
-WORKDIR ${ROOT_WS}/src
+# WORKDIR ${ROOT_WS}/src
 
-COPY ./dotfiles/.bashrc /tmp/dotfiles/.bashrc
+# RUN wstool init . \
+#   && wstool merge -t . https://raw.githubusercontent.com/ros-planning/moveit/master/moveit.rosinstall \
+#   && wstool remove  moveit_tutorials \
+#   && wstool update -t . \
+#   && git clone https://github.com/ros-planning/moveit_tutorials.git -b master \
+#   && rosdep install -y --from-paths . --ignore-src --rosdistro noetic
 
-RUN wstool init . \
-  && wstool merge -t . https://raw.githubusercontent.com/ros-planning/moveit/master/moveit.rosinstall \
-  && wstool remove  moveit_tutorials \
-  && wstool update -t . \
-  && git clone https://github.com/ros-planning/moveit_tutorials.git -b master \
-  && rosdep install -y --from-paths . --ignore-src --rosdistro noetic \
-  && echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+# WORKDIR ${ROOT_WS}
 
-
-WORKDIR ${ROOT_WS}
-
-
-# RUN catkin config --extend /opt/ros/${ROS_DISTRO} --cmake-args -DCMAKE_BUILD_TYPE=Release \
-#   && catkin build
 
 # rust install
 RUN curl --proto '=https' --tlsv1.2 -sSf -o /tmp/rustup.sh https://sh.rustup.rs \
@@ -154,10 +151,18 @@ RUN curl --proto '=https' --tlsv1.2 -sSf -o /tmp/rustup.sh https://sh.rustup.rs 
 RUN /tmp/rustup.sh -y
 WORKDIR /root
 
-RUN . ~/.bashrc && rustup target add x86_64-pc-windows-gnu
+RUN . /root/.bashrc && rustup target add x86_64-pc-windows-gnu
 
+# tutorial 用のパッケージ
+RUN apt-get update \
+  && apt-get -y install ros-${ROS_DISTRO}-franka-description \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY ./dotfiles/.bashrc /tmp/dotfiles/.bashrc
 COPY ./scripts/init.sh /tmp/init.sh
 COPY ./dotfiles/.vimrc /tmp/dotfiles/.vimrc
+COPY ./dotfiles/.config /tmp/dotfiles/.config
 RUN chmod 775 /tmp/init.sh
 
 ENTRYPOINT [ "/tmp/init.sh" ]

@@ -6,12 +6,12 @@ groupadd -g ${GID} ${GROUP_NAME}
 useradd -u ${UID} -g ${GID} ${GROUP_NAME}
 echo "${USER_NAME}:${PASSWORD}" | chpasswd
 usermod -G sudo ${GROUP_NAME}
-cp -a /tmp/dotfiles/. /home/${USER_NAME}
+cp -a -R /tmp/dotfiles/. /home/${USER_NAME}
 chown -R ${USER_NAME}:${GROUP_NAME} /home/${USER_NAME}
 
 # move rust env
 
-dirs=(.rustup .cargo .bashrc)
+dirs=(.rustup .cargo)
 
 for dir in ${dirs[@]}; do
     echo -e "copy /root/${dir} ...\n"
@@ -24,7 +24,7 @@ echo "source /home/${USER_NAME}/.cargo/env" >> /home/${USER_NAME}/.bashrc
 
 # move ros env
 if [ -z "$(ls /home/${USER_NAME}/catkin_ws)" ]; then
-    cp -R /root/catkin_ws/ /home/${USER_NAME}
+    cp -R /root/catkin_ws/ /home/${USER_NAME}/catkin_ws/
 fi
 cp -R /root/.ros/ /home/${USER_NAME}
 chown -R ${USER_NAME}:${GROUP_NAME} /home/${USER_NAME} 

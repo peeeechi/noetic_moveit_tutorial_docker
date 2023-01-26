@@ -1,0 +1,6 @@
+[submodule "ros-env/external/motoman"]
+	path = ros-env/external/motoman
+	url = https://github.com/ros-industrial/motoman.git
+[submodule "ros-env/external/industrial_core"]
+	path = ros-env/external/industrial_core
+	url = https://github.com/ros-industrial/industrial_core.git
