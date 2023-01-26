@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: urdf_store
+    relative_path: urdf/hc10/hc10dt.robot.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/motoman_hc10dt.srdf
+  CONFIG:
+    author_name: S.I
+    author_email: satoshi.o4o4.inoue@gmail.com
+    generated_timestamp: 1674533273

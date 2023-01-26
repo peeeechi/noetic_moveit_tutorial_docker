@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="ur5" >
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/ur5/ur5.urdf.xacro" />
+
+  <!-- arm 20200616 (Avoiding tray entry at the wrist)-->
+  <!--xacro:arg name="kinematics_config" default="$(find ppr_sandbox_botamochi_sandbox)/config/ur5/kinematics_default.yaml"/>
+  <xacro:ur5_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="-1.5708" shoulder_pan_upper_limit="1.5708"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="0.5"
+    elbow_joint_lower_limit="-0.15" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-1.148 * pi}" wrist_1_upper_limit="0.0"
+    wrist_2_lower_limit="${-1.0 * pi}" wrist_2_upper_limit="${0.0 * pi}"
+    wrist_3_lower_limit="${-2.0 * pi}" wrist_3_upper_limit="${2.0 * pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+    kinematics_file="${load_yaml('$(arg kinematics_config)')}"
+  /-->
+
+  <!-- arm 20200604 (setting up for no collision) -->
+  <xacro:arg name="kinematics_config" default="$(find ppr_sandbox_botamochi_sandbox)/config/ur5/kinematics_default.yaml"/>
+  <xacro:ur5_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="${-0.5 * pi}" shoulder_pan_upper_limit="${0.5833 * pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="0.5"
+    elbow_joint_lower_limit="0.0" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-1.75 * pi}" wrist_1_upper_limit="0.0"
+    wrist_2_lower_limit="${-1.0 * pi}" wrist_2_upper_limit="0.0"
+    wrist_3_lower_limit="${-2.0 * pi}" wrist_3_upper_limit="${2.0 * pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+    kinematics_file="${load_yaml('$(arg kinematics_config)')}"
+  />
+
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <ppr_tools default="mx35_x1">
+    <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hand/tool/pigrip25_x2.urdf.xacro" />
+    <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hand/tool/mx35_x1.urdf.xacro" />
+    <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hand/tool/pisoftgrip.urdf.xacro" />
+  </ppr_tools>
+
+</robot>

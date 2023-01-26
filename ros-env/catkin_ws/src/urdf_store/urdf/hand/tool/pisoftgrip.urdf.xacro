@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <tool name="softgrip" xyz="0.0 0.0 0.113" rpy="0.0 0.0 0.0">
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_store/urdf/hand/tool/pisoftgrip_open.stl" />
+      </geometry>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+    </collision>
+    <inertial>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+      <mass value="0.13" />
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.010" />
+    </inertial>
+    <effector>
+      <grasp name="default" input_port="" output_port="0 1" xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <blow name="blow" input_port="" output_port="4" xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </effector>
+  </tool>
+
+</robot>
