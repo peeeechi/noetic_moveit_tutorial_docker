@@ -2,3 +2,6 @@
 !/ros-env/ros/.gitkeep
 /ros-env/catkin_ws/**/*
 !/ros-env/catkin_ws/.gitkeep
+/ros-env/ws_moveit/**/*
+build
+devel

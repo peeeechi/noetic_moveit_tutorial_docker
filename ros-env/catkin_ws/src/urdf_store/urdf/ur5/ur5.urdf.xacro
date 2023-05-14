@@ -56,7 +56,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 ${base_correction}"/>
         <geometry>
-          <mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/stand/base_and_stand.stl" />
+          <mesh filename="package://urdf_store/urdf/stand/base_and_stand.stl" />
         </geometry>
         <material name="LightGrey">
           <color rgba="0.7 0.7 0.7 1.0"/>
@@ -65,7 +65,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 ${base_correction}"/>
         <geometry>
-          <mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/stand/base_and_stand.stl" />
+          <mesh filename="package://urdf_store/urdf/stand/base_and_stand.stl" />
         </geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.06" length="0.05" mass="${base_mass}">
@@ -329,7 +329,7 @@
     <link name="${prefix}ee_link">
       <visual>
         <geometry>
-          <mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/hand/base_hand_pitch_linear_2dof_nozzleguard.stl" />
+          <mesh filename="package://urdf_store/urdf/hand/base_hand_pitch_linear_2dof_nozzleguard.stl" />
         </geometry>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
         <material name="Grey">
@@ -338,7 +338,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/hand/base_hand_pitch_linear_2dof_nozzleguard.stl" />
+          <mesh filename="package://urdf_store/urdf/hand/base_hand_pitch_linear_2dof_nozzleguard.stl" />
         </geometry>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
       </collision>

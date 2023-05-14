@@ -13,6 +13,7 @@ services:
     command: /bin/bash
     entrypoint: /tmp/init.sh
     container_name: ros
+    runtime: nvidia
     tty: true
     ports:
       - 9090:9090

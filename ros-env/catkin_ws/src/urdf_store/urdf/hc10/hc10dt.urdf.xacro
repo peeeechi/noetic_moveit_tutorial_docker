@@ -92,25 +92,25 @@
       <collision>
         <geometry>
           <mesh filename="package://motoman_hc10_support/meshes/hc10dt/collision/link_6_t.stl"/>
-       </geometry>
+        </geometry>
       </collision>
     </link>
     <link name="${prefix}tool0"/>
-    
+
     <!-- hand link -->
     <link name="${prefix}ee_link">
       <visual>
         <geometry>
-          <mesh filename="package://urdf_store/urdf/hand/base_hand_pitch_linear_2dof_nozzleguard.stl" />
+          <mesh filename="package://urdf_store/urdf/hand/l1_hand_for_hc10.stl" />
         </geometry>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
-        <material name="Gray">
-          <color rgba="0.5 0.5 0.5 1.0" />
+        <material name="Grey">
+          <color rgba="0.5 0.5 0.5 1.0"/>
         </material>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://urdf_store/urdf/hand/base_hand_pitch_linear_2dof_nozzleguard.stl" />
+          <mesh filename="package://urdf_store/urdf/hand/l1_hand_for_hc10.stl" />
         </geometry>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
       </collision>
@@ -144,9 +144,9 @@
     <joint name="${prefix}joint_3_u" type="revolute">
       <parent link="${prefix}link_2_l"/>
       <child link="${prefix}link_3_u"/>
-      <origin xyz="0 0 0.700" rpy="0 0 0" />
+      <origin xyz="0 0 0.700" rpy="0 ${-pi/2} 0" />
       <axis xyz="0 -1 0" />
-      <limit lower="${radians(-5)}" upper="${radians(355)}" effort="141.12" velocity="${radians(180)}"/>
+      <limit lower="${radians(-95)}" upper="${radians(265)}" effort="141.12" velocity="${radians(180)}"/>
     </joint>
     <joint name="${prefix}joint_4_r" type="revolute">
       <parent link="${prefix}link_3_u"/>
@@ -167,25 +167,26 @@
       <child link="${prefix}link_6_t"/>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit lower="${radians(-180)}" upper="${radians(180)}" effort="31.36" velocity="${radians(250)}"/>
+      <limit lower="${radians(-210)}" upper="${radians(210)}" effort="31.36" velocity="${radians(250)}"/>
     </joint>
     <joint name="${prefix}joint_6_t-tool0" type="fixed">
-      <origin xyz="0 0 -0.170" rpy="${pi} 0 0"/>
+      <origin xyz="0 0 -0.170" rpy="${pi} 0 ${-pi/2}"/>
       <parent link="${prefix}link_6_t"/>
       <child link="${prefix}tool0"/>
     </joint>
-    
+
     <!-- hand joint -->
     <joint name="${prefix}ee_fixed_joint" type="fixed">
       <parent link="${prefix}tool0" />
-      <child link="${prefix}ee_link" />
-      <origin xyz="0.0 -0.1 0.2665" rpy="0.0 0.0 0.0" />
+      <child link = "${prefix}ee_link" />
+      <!-- <origin xyz="0.0 -0.1 0.3115" rpy="0.0 0.0 0.0" /> -->
+      <origin xyz="0.0 -0.253 0.496" rpy="0.0 0.0 0.0" />
     </joint>
-    
+
     <joint name="${prefix}ee_forcesensor_joint" type="fixed">
       <parent link="${prefix}tool0" />
-      <child link="${prefix}ee_forcesensor" />
-      <origin xyz="0.0 -0.1 0.0573" rpy="0.0 0.0 ${pi/2}" />
+      <child link = "${prefix}ee_forcesensor" />
+      <origin xyz="0.0 -0.2 0.0573" rpy="0.0 0.0 ${pi/2}" />
     </joint>
     <!-- end of hand joint list -->
 
@@ -205,7 +206,7 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <!--
-          <mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/stand/2022_Yaskawa_robotbaseorigine_lowpolygon.stl" />
+          <mesh filename="package://urdf_store/urdf/stand/2022_Yaskawa_robotbaseorigine_lowpolygon.stl" />
           -->
           <mesh filename="package://urdf_store/urdf/stand/base_and_stand.stl" />
         </geometry>
@@ -217,7 +218,7 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <!--
-          <mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/stand/2022_Yaskawa_robotbaseorigine_lowpolygon.stl" />
+          <mesh filename="package://urdf_store/urdf/stand/2022_Yaskawa_robotbaseorigine_lowpolygon.stl" />
           -->
           <mesh filename="package://urdf_store/urdf/stand/base_and_stand.stl" />
         </geometry>

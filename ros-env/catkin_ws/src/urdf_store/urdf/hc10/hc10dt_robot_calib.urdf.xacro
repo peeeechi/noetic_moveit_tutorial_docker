@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="motoman_hc10dt" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hc10/hc10dt_calib.urdf.xacro" />
+  <xacro:include filename="$(find urdf_store)/urdf/hc10/hc10dt_calib.urdf.xacro" />
   <xacro:motoman_hc10dt prefix=""/>
 
   <link name="world" />

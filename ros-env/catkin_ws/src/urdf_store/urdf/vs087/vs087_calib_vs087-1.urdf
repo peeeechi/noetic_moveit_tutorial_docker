@@ -277,7 +277,7 @@
 		<visual>
 			<origin rpy="0 0 1.5708" xyz="0.19 0 0.0025" />
 			<geometry>
-				<mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/hand/ensenso_calib_board_for_vs087.stl" scale="1 1 1" />
+				<mesh filename="package://urdf_store/urdf/hand/ensenso_calib_board_for_vs087.stl" scale="1 1 1" />
 			</geometry>
 			<material name="LightGrey">
 				<color rgba="0.7 0.7 0.7 1.0"/>
@@ -286,7 +286,7 @@
 		<collision>
 			<origin rpy="0 0 1.5708" xyz="0.19 0 0.0025" />
 			<geometry>
-				<mesh filename="package://ppr_sandbox_botamochi_sandbox/urdf/hand/ensenso_calib_board_for_vs087.stl" scale="1 1 1" />
+				<mesh filename="package://urdf_store/urdf/hand/ensenso_calib_board_for_vs087.stl" scale="1 1 1" />
 			</geometry>
 		</collision>
 		<inertial>

@@ -8,10 +8,10 @@
   <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
 
   <!-- ur5 -->
-  <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/ur5/ur5e_calib.urdf.xacro" />
+  <xacro:include filename="$(find urdf_store)/urdf/ur5/ur5e_calib.urdf.xacro" />
 
   <!-- arm -->
-  <xacro:arg name="kinematics_config" default="$(find ppr_sandbox_botamochi_sandbox)/config/ur5e/kinematics_default.yaml"/>
+  <xacro:arg name="kinematics_config" default="$(find urdf_store)/config/ur5e/kinematics_default.yaml"/>
   <xacro:ur5_robot prefix="" joint_limited="true"
     shoulder_pan_lower_limit="-1.5708" shoulder_pan_upper_limit="1.5708"
     shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="0.15"

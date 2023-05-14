@@ -6,16 +6,12 @@
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
                     "/opt/ros/noetic/include/**",
-                    "/home/inoue/catkin_ws/src/crane_plus_arm/crane_plus_camera_calibration/include/**",
-                    "/home/inoue/catkin_ws/src/crane_plus_arm/crane_plus_ikfast_arm_plugin/include/**",
                     "/usr/include/**",
                     "/home/inoue/catkin_ws/devel/include/**"
                 ]
             },
             "includePath": [
                 "/opt/ros/noetic/include/**",
-                "/home/inoue/catkin_ws/src/crane_plus_arm/crane_plus_camera_calibration/include/**",
-                "/home/inoue/catkin_ws/src/crane_plus_arm/crane_plus_ikfast_arm_plugin/include/**",
                 "/usr/include/**",
                 "/home/inoue/catkin_ws/devel/include/**"
             ],

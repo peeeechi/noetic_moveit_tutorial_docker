@@ -8,10 +8,10 @@
   <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
 
   <!-- ur5 -->
-  <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/ur5/ur5.urdf.xacro" />
+  <xacro:include filename="$(find urdf_store)/urdf/ur5/ur5.urdf.xacro" />
 
   <!-- arm 20200616 (Avoiding tray entry at the wrist)-->
-  <!--xacro:arg name="kinematics_config" default="$(find ppr_sandbox_botamochi_sandbox)/config/ur5/kinematics_default.yaml"/>
+  <!--xacro:arg name="kinematics_config" default="$(find urdf_store)/config/ur5/kinematics_default.yaml"/>
   <xacro:ur5_robot prefix="" joint_limited="true"
     shoulder_pan_lower_limit="-1.5708" shoulder_pan_upper_limit="1.5708"
     shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="0.5"
@@ -24,7 +24,7 @@
   /-->
 
   <!-- arm 20200604 (setting up for no collision) -->
-  <xacro:arg name="kinematics_config" default="$(find ppr_sandbox_botamochi_sandbox)/config/ur5/kinematics_default.yaml"/>
+  <xacro:arg name="kinematics_config" default="$(find urdf_store)/config/ur5/kinematics_default.yaml"/>
   <xacro:ur5_robot prefix="" joint_limited="true"
     shoulder_pan_lower_limit="${-0.5 * pi}" shoulder_pan_upper_limit="${0.5833 * pi}"
     shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="0.5"
@@ -45,9 +45,9 @@
   </joint>
 
   <ppr_tools default="mx35_x1">
-    <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hand/tool/pigrip25_x2.urdf.xacro" />
-    <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hand/tool/mx35_x1.urdf.xacro" />
-    <xacro:include filename="$(find ppr_sandbox_botamochi_sandbox)/urdf/hand/tool/pisoftgrip.urdf.xacro" />
+    <xacro:include filename="$(find urdf_store)/urdf/hand/tool/pigrip25_x2.urdf.xacro" />
+    <xacro:include filename="$(find urdf_store)/urdf/hand/tool/mx35_x1.urdf.xacro" />
+    <xacro:include filename="$(find urdf_store)/urdf/hand/tool/pisoftgrip.urdf.xacro" />
   </ppr_tools>
 
 </robot>
